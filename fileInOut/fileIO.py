@@ -5,18 +5,16 @@ from lib import myFileDialog as myfd
 class FileIO:
 
     strWork = "" #작업 or 복구
+    flag:bool
 
-    def run(self):
-
-        flag = input("1. 작업 2. 복구>>")
-        if flag == '1':
+    def __init__(self, flag:bool):
+        self.flag = flag
+        if flag == True:
             self.strWork = "작업"
-        elif flag == '2':
-            self.strWork = "복구"
-        else:
-            print("잘못된 입력입니다.")
-            return
-
+        elif flag == False:
+            self.strWork = "복구"        
+    
+    def run(self):
         filename_input, tmp_bytes = self.read()
         tmp_bytes = self.handle(tmp_bytes)
         self.write(filename_input, tmp_bytes)
@@ -31,9 +29,9 @@ class FileIO:
         return filename_input, tmp_bytes
 
     def handle(self, tmp_bytes:bytes) -> bytes:        
-        if self.strWork == "작업":
+        if self.flag == True:
             tmp_bytes = base64.b64encode(tmp_bytes)
-        elif self.strWork == "복구":
+        elif self.flag == False:
             tmp_bytes = base64.b64decode(tmp_bytes)            
         return tmp_bytes
 
