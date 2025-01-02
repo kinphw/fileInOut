@@ -34,7 +34,7 @@ class FileIOClipboard:
 
     def decode_clipboard_to_file(self) -> None:
         # 저장할 파일 이름 받기
-        filename_output = myfd.asksaveasfilename("저장할 파일")
+        filename_output = input("저장할 파일명을 입력하세요: ")
 
         # 클립보드에서 데이터 가져오기
         w32.OpenClipboard()
