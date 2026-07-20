@@ -2,3 +2,11 @@ logs/*
 __pycache__
 
 data
+
+# C# 빌드 산출물
+dpack.exe
+dpack.pdb
+bin/
+obj/
+publish/
+dist/

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- 버전은 루트 VERSION 파일 하나로 관리(단일 소스). 값만 바꾸면 exe에 자동 반영됩니다.
+       빌드:
+         self-contained 단일 exe   ->  .\publish.ps1   (폐쇄망 반입용, .NET 설치 불필요)
+         런타임 의존 개발 빌드      ->  dotnet build -c Release -->
+  <PropertyGroup>
+    <FileIOVersion>$([System.IO.File]::ReadAllText('$(MSBuildThisFileDirectory)VERSION').Trim())</FileIOVersion>
+
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <AssemblyName>dpack</AssemblyName>
+    <StartupObject>DPack</StartupObject>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+
+    <Version>$(FileIOVersion)</Version>
+    <InformationalVersion>$(FileIOVersion)</InformationalVersion>
+    <IncludeSourceRevisionInInformationalVersion>false</IncludeSourceRevisionInInformationalVersion>
+    <Product>dpack</Product>
+    <AssemblyTitle>dpack — data pack utility</AssemblyTitle>
+  </PropertyGroup>
+</Project>
